@@ -27,7 +27,7 @@ namespace MVC_CRUD.Services
         public bool DeleteMoney(string id)
         {
             string requestURL = $"https://localhost:7152/api/Money/delete-money?id={id}";
-            var response = _client.GetAsync(requestURL).Result;
+            var response = _client.DeleteAsync(requestURL).Result;
             if(response.IsSuccessStatusCode) return true;
             return false;
         }
@@ -61,3 +61,6 @@ namespace MVC_CRUD.Services
         }
     }
 }
+// 1. Khi chúng ta viết API là phương thức nào thì khi call cũng phải là phương thức đó
+// 2. Razor view (cái mà mình gen ra view ấy) chỉ support HTTPPOST và HTTPGET thôi nên bên MVC
+// chúng ta chỉ viết GET và Post mà không cần quan tâm đến bên Services nó dùng gì

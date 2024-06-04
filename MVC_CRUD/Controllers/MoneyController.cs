@@ -50,5 +50,10 @@ namespace MVC_CRUD.Controllers
             _services.UpdateMoney(m);
             return RedirectToAction("GetAll");
         }
+        public IActionResult Delete(string id)
+        {
+            _services.DeleteMoney(id);
+            return RedirectToAction("GetAll");
+        }
     }
 }
