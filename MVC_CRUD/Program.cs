@@ -1,4 +1,4 @@
-using MVC_CRUD.IServices;
+﻿using MVC_CRUD.IServices;
 using MVC_CRUD.Services;
 
 namespace MVC_CRUD
@@ -13,6 +13,12 @@ namespace MVC_CRUD
             builder.Services.AddControllersWithViews();
             // Add DI (Dependency Injection)
             builder.Services.AddTransient<IMoneyServices, MoneyServices>();
+            // Transient: Có vòng đời ngắn nhất, services sẽ được khởi tạo mỗi khi cần dùng và hẹo,
+            // ít tốn tài nguyên nhất
+            // Scope: Có vòng đời dài hơn, tồn tại song song với request chứa thành phần cần sử dụng
+            // services
+            // Singleton: Vòng đời dài nhất: Tồn tại từ khi có request trỏ tới services cho đến khi
+            // app hẹo
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

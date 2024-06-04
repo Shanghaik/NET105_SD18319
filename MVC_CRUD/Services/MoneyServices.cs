@@ -26,6 +26,9 @@ namespace MVC_CRUD.Services
 
         public bool DeleteMoney(string id)
         {
+            string requestURL = $"https://localhost:7152/api/Money/delete-money?id={id}";
+            var response = _client.GetAsync(requestURL).Result;
+            if(response.IsSuccessStatusCode) return true;
             return false;
         }
 
@@ -39,11 +42,21 @@ namespace MVC_CRUD.Services
 
         public Money GetById(string id)
         {
-            return null;
+            string requestURL = $"https://localhost:7152/api/Money/get-by-id?id={id}";
+            var response = _client.GetStringAsync(requestURL).Result;
+            Money result = JsonConvert.DeserializeObject<Money>(response);
+            return result;
         }
 
         public bool UpdateMoney(Money money)
         {
+            string requestURL = "https://localhost:7152/api/Money/update-money";
+            // tạo response
+            var response = _client.PutAsJsonAsync(requestURL, money).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
             return false;
         }
     }
